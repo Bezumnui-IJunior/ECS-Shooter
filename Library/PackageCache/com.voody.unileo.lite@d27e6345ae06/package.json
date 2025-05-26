@@ -1,0 +1,27 @@
+{
+  "name": "com.voody.unileo.lite",
+  "displayName": "UniLeo-Lite",
+  "description": "Unity Conversion Workflow for Leopotam ECS Lite. Easy convert GameObjects to Entity.",
+  "unity": "2025.4",
+  "version": "1.1.1-fb1",
+  "keywords": [
+    "leoecs",
+    "ecs",
+    "performance",
+    "voody2506",
+    "UniLeo Lite fb",
+    "fb",
+    "UniLeo",
+    "UniLeo Lite"
+  ],
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Leopotam/ecslite.git"
+  },
+  "author": {
+    "name": "Voody2506 (froked by Bezumnui)",
+    "email": "voody2506@gmail.com (forked by bezumnui.mistikgt@gmail.com)"
+  },
+  "_fingerprint": "d27e6345ae0681f5a758543664936c83848991e5"
+}

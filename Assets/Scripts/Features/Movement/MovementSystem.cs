@@ -1,44 +1,40 @@
-﻿using System;
-using Features.Movement.Components;
+﻿using Features.Movement.Components;
 using Leopotam.EcsLite;
+using Leopotam.EcsLite.Di;
 using UnityEngine;
 
 namespace Features.Movement
 {
-    public sealed class MovementSystem : IEcsInitSystem, IEcsRunSystem
+    public sealed class MovementSystem : SystemIterator, IEcsInitSystem
     {
-        private readonly EcsPool<SpeedComponent> _speed = null;
-        private readonly EcsPool<MoveableComponent> _moveable = null;
-        private readonly EcsPool<TransformComponent> _transform = null;
-        private readonly EcsPool<DirectionComponent> _direction = null;
-        
-        private EcsFilter _filter;
-
+        private readonly EcsPoolInject<MoveDirectionComponent> _direction = default;
+        private readonly EcsPoolInject<CharacterControllerComponent> _moveable = default;
+        private readonly EcsPoolInject<SpeedComponent> _speed = default;
+        private readonly EcsPoolInject<TransformComponent> _transform = default;
+        private readonly EcsPoolInject<VelocityComponent> _velocity = default;
 
         public void Init(IEcsSystems systems)
         {
-            _filter = systems.GetWorld()
+            SetFilter(systems.GetWorld()
                 .Filter<SpeedComponent>()
-                .Inc<MoveableComponent>()
+                .Inc<CharacterControllerComponent>()
                 .Inc<TransformComponent>()
-                .Inc<DirectionComponent>()
-                .End();
+                .Inc<MoveDirectionComponent>()
+                .Inc<VelocityComponent>()
+                .End()
+            );
         }
 
-        public void Run(IEcsSystems systems)
+        protected override void RunEntity()
         {
-            foreach (int entity in _filter)
-                Move(entity);
-        }
+            ref float speed = ref GetEntityComponent(_speed).Value;
+            ref CharacterController controller = ref GetEntityComponent(_moveable).Value;
+            ref Transform transform = ref GetEntityComponent(_transform).Value;
+            ref Vector3 direction = ref GetEntityComponent(_direction).Value;
+            ref Vector3 velocity = ref GetEntityComponent(_velocity).Value;
 
-        private void Move(int entity)
-        {
-            ref float speed = ref _speed.Get(entity).Value;
-            ref CharacterController controller = ref _moveable.Get(entity).Value;
-            ref Transform transform = ref _transform.Get(entity).Value;
-            ref Vector3 direction = ref _direction.Get(entity).Value;
-
-            controller.Move((transform.right * direction.x + transform.forward * direction.z) * speed);
+            controller.Move((transform.right * direction.x + transform.forward * direction.z) * speed * Time.deltaTime);
+            controller.Move(velocity * Time.deltaTime);
         }
     }
 }

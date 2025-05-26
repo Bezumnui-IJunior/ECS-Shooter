@@ -1,30 +1,34 @@
-﻿using Features.Movement.Components;
+﻿using Features.Jump.Events;
+using Features.Movement.Components;
 using Leopotam.EcsLite;
+using Leopotam.EcsLite.Di;
 using Tags;
+using UnityEngine;
 
 namespace Features.Input
 {
-    public sealed class PlayerInputSystem : IEcsInitSystem, IEcsRunSystem
+    public sealed class PlayerInputSystem : SystemIterator, IEcsInitSystem
     {
-        private EcsFilter _filter;
-        private EcsPool<DirectionComponent> _directionPool;
+        private readonly EcsPoolInject<MoveDirectionComponent> _directionPool = default;
+        private readonly EcsPoolInject<JumpEvent> _jumpEvent = default;
 
         public void Init(IEcsSystems systems)
         {
-            _filter = systems.GetWorld().Filter<PlayerTag>().Inc<DirectionComponent>().End();
+            SetFilter(systems.GetWorld()
+                .Filter<PlayerTag>()
+                .Inc<MoveDirectionComponent>()
+                .End()
+            );
         }
 
-        public void Run(IEcsSystems systems)
+        protected override void RunEntity()
         {
-            foreach (int entity in _filter)
-                ChangeDirection(entity);
-        }
+            ref Vector3 moveDirection = ref GetEntityComponent(_directionPool).Value;
+            moveDirection.x = UnityEngine.Input.GetAxisRaw("Horizontal");
+            moveDirection.z = UnityEngine.Input.GetAxisRaw("Vertical");
 
-        private void ChangeDirection(int entity)
-        {
-            ref DirectionComponent direction = ref _directionPool.Get(entity);
-            direction.Value.x = UnityEngine.Input.GetAxisRaw("Horizontal");
-            direction.Value.y = UnityEngine.Input.GetAxisRaw("Vertical");
+            if (UnityEngine.Input.GetButtonDown("Jump"))
+                AddEntityComponent(_jumpEvent);
         }
     }
 }
