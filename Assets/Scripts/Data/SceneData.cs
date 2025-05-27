@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using Features.Player.Services;
+using UnityEngine;
+using Views.Services;
 
 namespace Data
 {
     public class SceneData : MonoBehaviour
     {
-        public float Speed;
-        public Transform Transform;
-        public CharacterController CharacterController;
+        public EntityViewFactory EntityViewFactory;
+        public PlayerFactory PlayerFactory;
     }
 }

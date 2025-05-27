@@ -1,23 +1,25 @@
-using System;
+using Common;
+using Data;
 using Features.Gravity;
 using Features.GroundCheck;
 using Features.Input;
-using Features.Jump;
-using Features.Look;
 using Features.Movement;
+using Features.Player;
+using Features.Velocity;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Leopotam.EcsLite.UnityEditor;
 using UnityEngine;
+using Views;
 using Views.InputSystem;
 using Voody.UniLeo.Lite;
 
 public class EcsEntryPoint : MonoBehaviour
 {
+    [SerializeField] private SceneData _sceneData;
+    
     private InputSystem _inputSystem;
-
     private EcsSystems _systems;
-
     private EcsWorld _world;
 
     private void Awake()
@@ -59,13 +61,14 @@ public class EcsEntryPoint : MonoBehaviour
     private void AddSystems()
     {
         _systems
-            .Add(new PlayerInputSystem())
-            .Add(new MovementSystem())
-            .Add(new JumpSystem())
-            .Add(new GravitySystem())
-            .Add(new GroundedSetSystem())
-            .Add(new GroundedRemoveSystem())
-            .Add(new PlayerLookSystem());
+            .Add(new InputFeature(_systems))
+            .Add(new ViewsFeature(_systems))
+            .Add(new PlayerFeature(_systems))
+            .Add(new GroundCheckFeature(_systems))
+            .Add(new MovementFeature(_systems))
+            .Add(new VelocityFeature(_systems))
+            .Add(new GravityFeature(_systems))
+            .Add(new CommonFeature(_systems));
 
 #if UNITY_EDITOR
         _systems.Add(new EcsWorldDebugSystem());
@@ -74,7 +77,8 @@ public class EcsEntryPoint : MonoBehaviour
 
     private void AddInjections()
     {
-        _systems.Inject(_inputSystem);
-        // _systems.Inject();
+        _systems
+            .Inject(_inputSystem)
+            .Inject(_sceneData);
     }
 }
