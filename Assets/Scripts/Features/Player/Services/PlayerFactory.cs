@@ -13,7 +13,7 @@ namespace Features.Player.Services
     public class PlayerFactory : MonoBehaviour
     {
         [SerializeField] private EntityBehaviour _prefab;
-        [SerializeField] private Vector3 _position;
+        [SerializeField] private Transform _spawnPoint;
 
         public void CreatePlayer()
         {
@@ -23,7 +23,7 @@ namespace Features.Player.Services
             PoolWorker.AddComponent<GroundCheckTag>(entityId);
 
             PoolWorker.AddComponent<ViewPrefab>(entityId).Value = _prefab;
-            PoolWorker.AddComponent<SpawnPositionComponent>(entityId).Value = _position;
+            PoolWorker.AddComponent<SpawnPositionComponent>(entityId).Value = _spawnPoint.position;
         }
     }
 }

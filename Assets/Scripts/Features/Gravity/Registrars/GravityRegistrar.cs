@@ -15,7 +15,7 @@ namespace Registrars
 
         public override void UnregisterComponents()
         {
-            RemoveFromPool<GravityComponent>();
+            DeleteFromPool<GravityComponent>();
         }
     }
 }

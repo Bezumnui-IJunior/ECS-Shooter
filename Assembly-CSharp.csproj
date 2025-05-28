@@ -59,6 +59,7 @@
     <Compile Include="Assets/Scripts/Infrastructure/Registrars/EntityComponentRegistrar.cs" />
     <Compile Include="Assets/Scripts/Features/Player/Services/PlayerFactory.cs" />
     <Compile Include="Assets/Scripts/Features/Gravity/Registrars/GravityRegistrar.cs" />
+    <Compile Include="Assets/Scripts/Common/Components/BodyTransformComponent.cs" />
     <Compile Include="Assets/Scripts/Features/Velocity/Components/VelocityComponent.cs" />
     <Compile Include="Assets/Scripts/Views/Components/ViewPrefab.cs" />
     <Compile Include="Assets/Scripts/Features/Gravity/GravityFeature.cs" />
@@ -66,7 +67,7 @@
     <Compile Include="Assets/Scripts/Infrastructure/Registrars/IEntityComponentRegistrar.cs" />
     <Compile Include="Assets/Scripts/Features/Player/Look/Systems/PlayerLookSystem.cs" />
     <Compile Include="Assets/Scripts/Features/GroundCheck/Components/GroundCheckComponent.cs" />
-    <Compile Include="Assets/Scripts/Features/Movement/Components/TransformComponent.cs" />
+    <Compile Include="Assets/Scripts/Features/Enemy/Systems/PlayerSetDirectionSystem.cs" />
     <Compile Include="Assets/Scripts/Features/Movement/Systems/JumpSystem.cs" />
     <Compile Include="Assets/Scripts/Features/Velocity/VelocityFeature.cs" />
     <Compile Include="Assets/Scripts/Features/Movement/Registrars/JumpRegistrar.cs" />
@@ -90,20 +91,23 @@
     <Compile Include="Assets/Scripts/Tags/GroundCheck/GroundCheckTag.cs" />
     <Compile Include="Assets/Scripts/Features/Movement/Components/MoveDirectionComponent.cs" />
     <Compile Include="Assets/Scripts/Features/GroundCheck/GroundCheckFeature.cs" />
-    <Compile Include="Assets/Scripts/Features/Player/Look/Components/BodyTransformComponent.cs" />
+    <Compile Include="Assets/Scripts/Features/Enemy/Components/PlayerDirectionTag.cs" />
     <Compile Include="Assets/Scripts/Views/ViewsFeature.cs" />
     <Compile Include="Assets/Scripts/Features/Movement/Registrars/MovementRegistrar.cs" />
+    <Compile Include="Assets/Scripts/Features/Enemy/EnemyFeature.cs" />
     <Compile Include="Assets/Scripts/Infrastructure/Registrars/EntityBehaviour.cs" />
     <Compile Include="Assets/Scripts/Features/Player/Look/Registrars/LookRegistrar.cs" />
     <Compile Include="Assets/Scripts/Tags/GroundCheck/Providers/GroundCheckTagProvider.cs" />
     <Compile Include="Assets/Scripts/Input/Systems/PlayerInputMovementSystem.cs" />
     <Compile Include="Assets/Scripts/EcsEntryPoint.cs" />
     <Compile Include="Assets/Scripts/Features/Velocity/Systems/VelocitySystem.cs" />
+    <Compile Include="Assets/Scripts/Features/Enemy/Systems/EnemyInitSystem.cs" />
     <Compile Include="Assets/Scripts/Views/Components/ViewComponent.cs" />
     <Compile Include="Assets/Scripts/Features/Movement/Components/SpeedComponent.cs" />
     <Compile Include="Assets/Scripts/Features/Movement/MovementFeature.cs" />
     <Compile Include="Assets/Scripts/Features/Movement/Events/JumpEvent.cs" />
     <Compile Include="Assets/Scripts/Features/Gravity/Components/GravityComponent.cs" />
+    <Compile Include="Assets/Scripts/Common/Registrars/BodyTransformRegistrar.cs" />
     <Reference Include="UnityEngine">
       <HintPath>/Applications/Unity/Hub/Editor/6000.0.47f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

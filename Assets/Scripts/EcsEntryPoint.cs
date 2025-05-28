@@ -1,5 +1,6 @@
 using Common;
 using Data;
+using Features.Enemy;
 using Features.Gravity;
 using Features.GroundCheck;
 using Features.Input;
@@ -64,10 +65,11 @@ public class EcsEntryPoint : MonoBehaviour
             .Add(new InputFeature(_systems))
             .Add(new ViewsFeature(_systems))
             .Add(new PlayerFeature(_systems))
+            .Add(new EnemyFeature(_systems))
             .Add(new GroundCheckFeature(_systems))
+            .Add(new GravityFeature(_systems))
             .Add(new MovementFeature(_systems))
             .Add(new VelocityFeature(_systems))
-            .Add(new GravityFeature(_systems))
             .Add(new CommonFeature(_systems));
 
 #if UNITY_EDITOR

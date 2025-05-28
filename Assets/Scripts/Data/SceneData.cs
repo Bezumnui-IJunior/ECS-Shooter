@@ -1,4 +1,5 @@
-﻿using Features.Player.Services;
+﻿using Features.Enemy.Services;
+using Features.Player.Services;
 using UnityEngine;
 using Views.Services;
 
@@ -8,5 +9,6 @@ namespace Data
     {
         public EntityViewFactory EntityViewFactory;
         public PlayerFactory PlayerFactory;
+        public EnemyFactory EnemyFactory;
     }
 }

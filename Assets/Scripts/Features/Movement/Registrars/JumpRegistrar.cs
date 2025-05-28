@@ -14,7 +14,7 @@ namespace Registrars
         }
         public override void UnregisterComponents()
         {
-            RemoveFromPool<JumpForceComponent>();
+            DeleteFromPool<JumpForceComponent>();
         }
     }
 }

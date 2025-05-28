@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Features.Player.Look.Components
+namespace Common.Components
 {
     [Serializable]
     public struct BodyTransformComponent

@@ -11,7 +11,7 @@ namespace Infrastructure.Registrars
         protected ref T AddToPool<T>() where T : struct =>
             ref PoolWorker.AddComponent<T>(EntityId);
 
-        protected void RemoveFromPool<T>() where T : struct
+        protected void DeleteFromPool<T>() where T : struct
         {
             EcsPool<T> pool = WorldHandler.GetMainWorld().GetPool<T>();
 

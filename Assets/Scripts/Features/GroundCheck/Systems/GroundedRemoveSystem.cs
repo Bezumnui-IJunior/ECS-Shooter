@@ -8,9 +8,6 @@ namespace Features.GroundCheck.Systems
 {
     public class GroundedRemoveSystem : SystemIterator, IEcsInitSystem
     {
-        private readonly EcsPoolInject<CharacterControllerComponent> _characterController = default;
-        private readonly EcsPoolInject<GroundedTag> _grounded = default;
-
         public void Init(IEcsSystems systems)
         {
             SetFilter(systems.GetWorld()
