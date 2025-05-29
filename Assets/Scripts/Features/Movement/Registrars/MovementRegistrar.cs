@@ -1,6 +1,7 @@
 using Common.Components;
 using Features.Enemy.Components;
 using Features.Movement.Components;
+using Features.Velocity.Components;
 using Infrastructure.Registrars;
 using UnityEngine;
 

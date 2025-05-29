@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Views.Services
 {
-    public class EntityViewFactory : MonoBehaviour
+    public class EntityViewFactory
     {
         public void InstantiateEntity(EntityBehaviour prefab, int entityId)
         {
-            EntityBehaviour obj = Instantiate(prefab);
+            EntityBehaviour obj = Object.Instantiate(prefab);
             obj.Construct(entityId);
         }
     }

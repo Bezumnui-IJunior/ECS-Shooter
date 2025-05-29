@@ -1,5 +1,6 @@
 using Features.Jump.Events;
 using Features.Movement.Components;
+using Features.Velocity.Components;
 using Infrastructure;
 using Leopotam.EcsLite;
 using Tags.GroundCheck;

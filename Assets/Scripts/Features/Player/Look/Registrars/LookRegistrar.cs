@@ -14,7 +14,6 @@ namespace Features.Player.Look.Registrars
         {
             AddToPool<CameraTransformComponent>().Value = _cameraTransform;
             AddToPool<CameraSensitivityComponent>().Value = _sensitivity;
-
             AddToPool<BodyAnglesComponent>();
             AddToPool<CameraAnglesComponent>();
         }

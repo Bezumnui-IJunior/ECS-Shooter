@@ -3,12 +3,13 @@ using Infrastructure;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Views.Components;
+using Views.Services;
 
 namespace Views.Systems
 {
     public class SpawnEntitySystem : SystemIterator, IEcsInitSystem
     {
-        private readonly EcsCustomInject<SceneData> _sceneData = default; 
+        private readonly EntityViewFactory _entityViewFactory = new EntityViewFactory();
             
         public void Init(IEcsSystems systems)
         {
@@ -20,7 +21,7 @@ namespace Views.Systems
         }
         protected override void RunEntity()
         {
-            _sceneData.Value.EntityViewFactory.InstantiateEntity(GetEntityComponent<ViewPrefab>().Value, CurrentEntity);
+            _entityViewFactory.InstantiateEntity(GetEntityComponent<ViewPrefab>().Value, CurrentEntity);
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using Common.Components;
 using Features.Enemy.Components;
 using Features.Movement.Components;
+using Features.Velocity.Components;
 using Infrastructure;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -14,9 +15,9 @@ namespace Features.Movement.Systems
         {
             SetFilter(systems.GetWorld()
                 .Filter<SpeedComponent>()
-                .Inc<CharacterControllerComponent>()
                 .Inc<BodyTransformComponent>()
                 .Inc<MoveDirectionComponent>()
+                .Inc<VelocityComponent>()
                 .End()
             );
         }
@@ -24,11 +25,13 @@ namespace Features.Movement.Systems
         protected override void RunEntity()
         {
             ref float speed = ref GetEntityComponent<SpeedComponent>().Value;
-            ref CharacterController controller = ref GetEntityComponent<CharacterControllerComponent>().Value;
             ref Transform transform = ref GetEntityComponent<BodyTransformComponent>().Value;
-            ref Vector3 direction = ref GetEntityComponent<MoveDirectionComponent>().Value;
+            ref Vector3 forward = ref GetEntityComponent<MoveDirectionComponent>().Value;
+            ref Vector3 velocity = ref GetEntityComponent<VelocityComponent>().Value;
 
-            controller.Move((transform.right * direction.x + transform.forward * direction.z) * speed * Time.deltaTime);
+            Vector3 velocityXZ = (transform.right * forward.x + transform.forward * forward.z) * speed;
+            velocity.x = velocityXZ.x;
+            velocity.z = velocityXZ.z;
         }
     }
 }

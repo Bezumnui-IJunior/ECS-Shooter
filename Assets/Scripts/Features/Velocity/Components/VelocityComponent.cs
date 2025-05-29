@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Features.Movement.Components
+namespace Features.Velocity.Components
 {
     public struct VelocityComponent
     {
